@@ -38,8 +38,8 @@ app.use('/api/auth', authRoute);
 
 module.exports = app;
 
-const mongoDB = "mongodb+srv://helenemongodb:fgGWW9mA1DnTSqyH@cluster0.vv262gl.mongodb.net/?retryWrites=true&w=majority";
-mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
+
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
