@@ -103,15 +103,14 @@ exports.likeDislikeSauce = async (req, res, next) => {
     case 0:
       if (likeStatus == 0 && userHasLiked != undefined) {
         Sauce.updateOne({_id: sauceSelected._id}, {$inc:{likes: -1}, $pull:{usersLiked: userId}})
-       
+        .then(() => res.status(200).json({ message: 'Like retiré !'}))
       }
 
       if (likeStatus == 0 && userHasDisliked != undefined) {
         Sauce.updateOne({_id: sauceSelected._id}, {$inc:{dislikes: -1}, $pull:{usersDisliked: userId}})
-       
+        .then(() => res.status(200).json({ message: 'Dislike retiré !'}))
       }
 
-      res.status(200).json({ message: 'Likfe/Dislike modifiée !'})
       break;
 
     case -1:
